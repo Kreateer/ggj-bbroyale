@@ -7,9 +7,7 @@ TagManager:
   - Mine
   - UnderwaterVolume
   - SurfaceVolume
-  - Wave
-  - Foam
-  - BigBubble
+  - ShowerHead
   layers:
   - Default
   - TransparentFX

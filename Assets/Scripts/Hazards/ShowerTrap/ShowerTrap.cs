@@ -12,7 +12,7 @@ public class ShowerTrap : MonoBehaviour
     {
         gameObject.tag = "ShowerTrap";
         duckster = playerRef.GetComponent<DuckieMovement>();
-        ducksterPower = duckster.Power;
+        ducksterPower = duckster.Speed;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -27,7 +27,7 @@ public class ShowerTrap : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            duckster.Power = 1f;
+            duckster.Speed = 1f;
         }
     }
 
@@ -35,7 +35,7 @@ public class ShowerTrap : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            duckster.Power = ducksterPower;
+            duckster.Speed = ducksterPower;
         }
     }
 
