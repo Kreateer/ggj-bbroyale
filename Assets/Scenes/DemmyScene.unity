@@ -419,7 +419,7 @@ GameObject:
   - component: {fileID: 1513726674}
   - component: {fileID: 1513726680}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: TheDuckler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -623,8 +623,8 @@ MonoBehaviour:
   Drag: 0.1
   xRot: 0
   zRot: 0
-  bobRotSpeed: 1
-  bobRotAmount: 1
+  bobRotSpeed: 3
+  bobRotAmount: 3
 --- !u!1 &1531144952
 GameObject:
   m_ObjectHideFlags: 0
