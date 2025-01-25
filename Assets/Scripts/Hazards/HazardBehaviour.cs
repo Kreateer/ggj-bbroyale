@@ -80,27 +80,30 @@ public class HazardBehaviour : MonoBehaviour
                         else if (hitangle < 55)
                         {
                             print(hitangle + " Boost");
-                            StartCoroutine(BoostWave());
+                            StartCoroutine(Boost(1f));
                         }
                         else if (hitangle > 125)
                         {
                             print(hitangle + " Jump");
                             float speed = Mathf.Abs(aux.GetComponent<Rigidbody>().linearVelocity.x + aux.GetComponent<Rigidbody>().linearVelocity.z);
-                            aux.GetComponent<Rigidbody>().AddForce(aux.transform.up * speed * 20, ForceMode.Impulse);
+                            aux.GetComponent<Rigidbody>().AddForce(aux.transform.up * speed * 50, ForceMode.Impulse);
                         }
                     }
                     break;
                 case "Foam":
                     drag = true;
                     break;
+                case "BigBubble":
+                    StartCoroutine(Boost(5f));
+                    break;
             }
         }
     }
 
-    IEnumerator BoostWave()
+    IEnumerator Boost(float time)
     {
         aux.GetComponent<DuckieMovement>().Power = aux.GetComponent<DuckieMovement>().Power * 2;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(time);
         aux.GetComponent<DuckieMovement>().Power = aux.GetComponent<DuckieMovement>().Power / 2;
         yield return null;
     }
