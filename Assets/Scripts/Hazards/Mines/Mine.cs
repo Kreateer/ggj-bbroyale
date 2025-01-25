@@ -24,6 +24,7 @@ public class Mine : MonoBehaviour
             ParticleExplosion.Play(true);
 
             gameObject.GetComponent<MeshRenderer>().enabled = false;
+            gameObject.GetComponent<SphereCollider>().enabled = false;
 
             Destroy(gameObject, particleDuration);
         }
