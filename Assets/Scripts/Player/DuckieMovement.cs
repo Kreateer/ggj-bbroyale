@@ -23,8 +23,6 @@ public class DuckieMovement : MonoBehaviour
 
     Vector2 moveDirection = Vector2.zero;
 
-    public bool isMovingForward;
-
     public float xRot;
     public float zRot;
 
