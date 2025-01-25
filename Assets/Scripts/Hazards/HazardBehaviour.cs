@@ -31,9 +31,10 @@ public class HazardBehaviour : MonoBehaviour
                     aux.GetComponent<DuckieMovement>().enabled = false;
                     aux.GetComponent<FloatingObject>().enabled = false;
                     aux.transform.eulerAngles = Vector3.zero;
+                    aux.GetComponent<Rigidbody>().mass = aux.GetComponent<Rigidbody>().mass * 10;
                 }
                 faux += transform.eulerAngles.z + Time.deltaTime * 100;
-                aux.transform.eulerAngles = new Vector3(0, 0, faux);
+                aux.transform.eulerAngles = new Vector3(aux.transform.eulerAngles.x, aux.transform.eulerAngles.y, faux);
                 //aux.transform.eulerAngles += new Vector3(0, 0, transform.eulerAngles.z + Time.deltaTime * 100);
                 //print(aux.transform.eulerAngles.z);
                 if(aux.transform.eulerAngles.z > 345 && aux.transform.eulerAngles.z > 355)
@@ -41,6 +42,7 @@ public class HazardBehaviour : MonoBehaviour
                     flip = false;
                     aux.GetComponent<DuckieMovement>().enabled = true;
                     aux.GetComponent<FloatingObject>().enabled = true;
+                    aux.GetComponent<Rigidbody>().mass = aux.GetComponent<Rigidbody>().mass / 10;
                 }
             }
             if(drag)
@@ -49,7 +51,7 @@ public class HazardBehaviour : MonoBehaviour
                 {
                     aux.GetComponent<DuckieMovement>().enabled = false;
                     aux.GetComponent<FloatingObject>().enabled = false;
-                    aux.transform.eulerAngles = Vector3.zero;
+                    aux.transform.eulerAngles = new Vector3(aux.transform.eulerAngles.x, 0, 0);
                 }
                 aux.transform.position = transform.position;
                 timer += Time.deltaTime;
@@ -71,7 +73,7 @@ public class HazardBehaviour : MonoBehaviour
             switch(gameObject.tag)
             {
                 case "Wave":
-                    if (other.gameObject.GetComponent<DuckieMovement>().enabled) 
+                    if (other.gameObject.GetComponent<DuckieMovement>().enabled && !flip) 
                     { 
                         float hitangle = Mathf.Abs(aux.transform.eulerAngles.y - transform.eulerAngles.y);
                         print(hitangle);

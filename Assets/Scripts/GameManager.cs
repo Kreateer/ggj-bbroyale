@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.B))
         {
-            Vector3 origin = new Vector3(Random.Range(-100, 100), 0, Random.Range(50, 150));
+            Vector3 origin = new Vector3(Random.Range(-100, 100), -50, Random.Range(50, 150));
             Vector3 goal = player.transform.position;
             SpawnObject.Spawn(origin, goal, gos[Random.Range(0,1)]);
         }

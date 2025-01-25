@@ -96,10 +96,6 @@ namespace WaterStylizedShader
             {
                 RenderSettings.fog = true;
             }
-            else
-            {
-                RenderSettings.fog = false;
-            }
         }
 
         private void OnTriggerExit(Collider other)
@@ -107,10 +103,6 @@ namespace WaterStylizedShader
             if (other.gameObject.tag == "UnderwaterVolume")
             {
                 RenderSettings.fog = false;
-            }
-            else
-            {
-                RenderSettings.fog = true;
             }
         }
     }

@@ -10,6 +10,8 @@ public class SpawnObject : MonoBehaviour
         GameObject aux = Instantiate(go, origin, Quaternion.identity);
         aux.GetComponent<HazardBehaviour>().goal = goal;
         aux.transform.LookAt(goal);
+        if(aux.tag == "Wave")
+            aux.transform.eulerAngles = new Vector3(aux.transform.eulerAngles.x, aux.transform.eulerAngles.y, 90);
     }
 
 }
