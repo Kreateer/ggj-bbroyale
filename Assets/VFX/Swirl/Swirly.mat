@@ -117,8 +117,8 @@ Material:
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
-    - _SwirlSpeed: 2
-    - _SwirlStrength: -100
+    - _SwirlSpeed: 0
+    - _SwirlStrength: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
