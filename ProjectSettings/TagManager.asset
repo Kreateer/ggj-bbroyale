@@ -10,6 +10,8 @@ TagManager:
   - UnderwaterVolume
   - SurfaceVolume
   - SplashTrapInner
+  - Wave
+  - LoseBox
   layers:
   - Default
   - TransparentFX
