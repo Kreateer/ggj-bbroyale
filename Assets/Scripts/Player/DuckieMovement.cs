@@ -47,7 +47,7 @@ public class DuckieMovement : MonoBehaviour
 
         moveDirection = moveAction.ReadValue<Vector2>();
 
-        Debug.Log(moveDirection);
+        //Debug.Log(moveDirection);
 
         if (moveDirection.x > 0)
         {
