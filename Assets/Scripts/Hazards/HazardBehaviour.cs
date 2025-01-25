@@ -5,7 +5,7 @@ using WaterStylizedShader;
 public class HazardBehaviour : MonoBehaviour
 {
     public Vector3 goal;
-    public float speed;
+    public float speed, lifetime;
     public bool wall = false;
 
     Vector3 direction;
@@ -18,9 +18,12 @@ public class HazardBehaviour : MonoBehaviour
             direction = (goal - transform.position).normalized;
     }
 
-    float faux = 0, timer = 0;
+    float faux = 0, timer = 0, deathTime = 0;
     private void Update()
     {
+        deathTime += Time.deltaTime;
+        if (deathTime > lifetime)
+            Destroy(gameObject);
         if(goal != null)
         {
             transform.position = transform.position + direction * (speed * Time.deltaTime);
@@ -30,7 +33,7 @@ public class HazardBehaviour : MonoBehaviour
                 {
                     aux.GetComponent<DuckieMovement>().enabled = false;
                     aux.GetComponent<FloatingObject>().enabled = false;
-                    aux.transform.eulerAngles = Vector3.zero;
+                    aux.transform.eulerAngles = new Vector3(0, aux.transform.eulerAngles.y, 0);
                     aux.GetComponent<Rigidbody>().mass = aux.GetComponent<Rigidbody>().mass * 10;
                 }
                 faux += transform.eulerAngles.z + Time.deltaTime * 100;
@@ -55,7 +58,7 @@ public class HazardBehaviour : MonoBehaviour
                 }
                 aux.transform.position = transform.position;
                 timer += Time.deltaTime;
-                if(timer > 2)
+                if(timer > 2 || aux.transform.position.x > 100 || aux.transform.position.x < -100 || aux.transform.position.z > 50 || aux.transform.position.z < -50)
                 {
                     drag = false;
                     aux.GetComponent<DuckieMovement>().enabled = true;
@@ -103,6 +106,7 @@ public class HazardBehaviour : MonoBehaviour
                     break;
                 case "BigBubble":
                     StartCoroutine(Boost(6f,4f));
+                    Destroy(gameObject);
                     break;
             }
         }

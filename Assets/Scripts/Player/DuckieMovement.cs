@@ -99,6 +99,10 @@ public class DuckieMovement : MonoBehaviour
             {
                 Speed = Speed + (Time.deltaTime * AccelerationSpeed);
             }
+            else
+            {
+                Speed = Speed - (Time.deltaTime * AccelerationSpeed); 
+            }
             if (Steerpower >= MinSteerpower)
             {
                 Steerpower = Steerpower - (Time.deltaTime * SteerAccelerationSpeed);

@@ -123,4 +123,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   goal: {x: 0, y: 0, z: 0}
   speed: 20
+  lifetime: 15
   wall: 1
