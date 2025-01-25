@@ -9,6 +9,7 @@ public class SpawnObject : MonoBehaviour
 
         GameObject aux = Instantiate(go, origin, Quaternion.identity);
         aux.GetComponent<HazardBehaviour>().goal = goal;
+        aux.transform.LookAt(goal);
     }
 
 }

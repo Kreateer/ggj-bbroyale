@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 3408042425006427689}
   - component: {fileID: 2601005277758887186}
   m_Layer: 0
-  m_Name: BigWave
-  m_TagString: Wave
+  m_Name: Foam
+  m_TagString: Foam
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
