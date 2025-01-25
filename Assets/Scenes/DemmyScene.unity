@@ -620,7 +620,11 @@ MonoBehaviour:
   Steerpower: 2000
   Power: 5
   MaxSpeed: 10
+  MinSpeed: 5
   Drag: 0.1
+  AccelerationSpeed: 1
+  SteerAccelerationSpeed: 200
+  isMovingForward: 0
   xRot: 0
   zRot: 0
   bobRotSpeed: 3
