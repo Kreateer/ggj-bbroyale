@@ -8,15 +8,27 @@ public class DuckieMovement : MonoBehaviour
     PlayerInput playerInput;
     InputAction moveAction;
     InputAction sprintAction;
+    InputAction anchorAction;
 
     public Transform Motor;
+
     public float Steerpower;
-    public float Power;
+    public float MaxSteerpower;
+    public float MinSteerpower;
+    public float BaseSteerpower;
+
+    public float Speed;
     public float MaxSpeed;
     public float MinSpeed;
-    public float Drag;
+    public float BaseSpeed;
+
     public float AccelerationSpeed;
     public float SteerAccelerationSpeed;
+
+    public float BreakSpeed;
+    public float BreakSpeedSteer;
+
+    public bool isMovingForward;
 
     protected Rigidbody Rigidbody;
     protected Quaternion StartRotation;
@@ -34,6 +46,7 @@ public class DuckieMovement : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         moveAction = playerInput.actions.FindAction("Move");
         sprintAction = playerInput.actions.FindAction("Sprint");
+        anchorAction = playerInput.actions.FindAction("Jump");
         Rigidbody = GetComponent<Rigidbody>();
         StartRotation = Motor.localRotation;
     }
@@ -66,40 +79,80 @@ public class DuckieMovement : MonoBehaviour
 
         if (moveDirection.y > 0)
         {
-            Rigidbody.AddForce(forward * Power, ForceMode.Impulse);
+            Rigidbody.AddForce(forward * Speed, ForceMode.Impulse);
+            isMovingForward = true;
         }
         else if (moveDirection.y < 0)
         {
-            Rigidbody.AddForce(backwards * Power, ForceMode.Impulse);
+            Rigidbody.AddForce(backwards * Speed, ForceMode.Impulse);
+            isMovingForward = false;
+        }
+        else {
+            isMovingForward = false;
         }
 
-        if (sprintAction.IsPressed() == true)
+        //Boat sprinting go brrrrrrrt
+        if (sprintAction.IsPressed() == true && isMovingForward == true)
         {
-            if (Power >= MaxSpeed)
+            //If speed less then maxx, and steer more then min, GO FULL BOOST!
+            if (Speed <= MaxSpeed && Steerpower >= MinSteerpower)
             {
-                Power = MaxSpeed;
-                Steerpower = 1000f;
-            }
-            else
-            {
-                Power = Power + (Time.deltaTime * AccelerationSpeed);
+                Speed = Speed + (Time.deltaTime * AccelerationSpeed);
                 Steerpower = Steerpower - (Time.deltaTime * SteerAccelerationSpeed);
             }
-          
+        }
+        else if (anchorAction.IsPressed() == true && sprintAction.IsPressed() == false)
+        {
+            if (Speed <= MaxSpeed && Speed >= MinSpeed)
+            {
+                Speed = Speed - (Time.deltaTime * BreakSpeed);
+            }
+
+            if (Steerpower <= 6000f && Steerpower >= MinSteerpower)
+            {
+                Steerpower = Steerpower + (Time.deltaTime * BreakSpeedSteer);
+            }
         }
         else
         {
-            if (Power <= MinSpeed)
+            //utilizing to go back to average speeds
+            if (Speed != BaseSpeed && Steerpower != BaseSteerpower)
             {
-                Power = MinSpeed;
-                Steerpower = 2000f;
-            }
-            else
-            {
-                Power = Power - (Time.deltaTime * AccelerationSpeed);
-                Steerpower = Steerpower + (Time.deltaTime * SteerAccelerationSpeed);
-            }
+                //checking to see if higher or less then base, and then correcting
+                if (Speed >= BaseSpeed)
+                {
+                    Speed = Speed - (Time.deltaTime * AccelerationSpeed);
+                }
+                else
+                {
+                    Speed = Speed + (Time.deltaTime * AccelerationSpeed);
+                }
+
+                //checking to see if steerpower is higher or less then base, then correcting.
+                if (Steerpower >= BaseSteerpower)
+                {
+                    Steerpower = Steerpower - (Time.deltaTime * SteerAccelerationSpeed);
+                }
+                else
+                {
+                    Steerpower = Steerpower + (Time.deltaTime * SteerAccelerationSpeed);
+                }
+
+                if (Steerpower >= MaxSteerpower)
+                {
+                    Steerpower = Steerpower - (Time.deltaTime * BreakSpeedSteer);
+                }
+
+            } 
         }
+
+       // else
+        //{
+          //  Speed = Speed - (Time.deltaTime * AccelerationSpeed);
+            //Steerpower = Steerpower + (Time.deltaTime * SteerAccelerationSpeed);
+        //}
+
+        
 
         //Fake Bobbing
         float xRot = (Mathf.Sin(Time.time * bobRotSpeed) * bobRotAmount);

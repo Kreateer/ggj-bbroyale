@@ -14,7 +14,7 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 10
-  m_Fog: 1
+  m_Fog: 0
   m_FogColor: {r: 0.46855342, g: 0.7981848, b: 1, a: 1}
   m_FogMode: 1
   m_FogDensity: 0.5
@@ -747,13 +747,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Motor: {fileID: 1635800696}
-  Steerpower: 2000
-  Power: 5
+  Steerpower: 2700
+  MaxSteerpower: 4000
+  MinSteerpower: 2200
+  BaseSteerpower: 3200
+  Speed: 4
   MaxSpeed: 10
-  MinSpeed: 5
-  Drag: 0.1
+  MinSpeed: 0
+  BaseSpeed: 5
   AccelerationSpeed: 1
   SteerAccelerationSpeed: 200
+  BreakSpeed: 5
+  BreakSpeedSteer: 1000
+  isMovingForward: 0
   xRot: 0
   zRot: 0
   bobRotSpeed: 3
