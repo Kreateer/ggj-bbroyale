@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 
 
@@ -23,6 +24,12 @@ namespace WaterStylizedShader
         public float waterHeight;
 
         public float displacementAmount = 3f;
+
+        public Volume postProcessingVolume;
+        public VolumeProfile surfacePostProcessing;
+        public VolumeProfile underwaterPostProcessing;
+
+        public Transform mainCamera;
 
         Rigidbody rb;
         int floatersUnderwater;
@@ -57,6 +64,8 @@ namespace WaterStylizedShader
                 }
             }
 
+    
+
 
             if (underwater && floatersUnderwater == 0)
             {
@@ -71,11 +80,37 @@ namespace WaterStylizedShader
             {
                 rb.linearDamping = underWaterDrag;
                 rb.angularDamping = underWaterAngularDrag;
+               
             }
             else
             {
                 rb.linearDamping = airWaterDrag;
                 rb.angularDamping = airWaterAngularDrag;
+                
+            }
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.gameObject.tag == "UnderwaterVolume")
+            {
+                RenderSettings.fog = true;
+            }
+            else
+            {
+                RenderSettings.fog = false;
+            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.gameObject.tag == "UnderwaterVolume")
+            {
+                RenderSettings.fog = false;
+            }
+            else
+            {
+                RenderSettings.fog = true;
             }
         }
     }
