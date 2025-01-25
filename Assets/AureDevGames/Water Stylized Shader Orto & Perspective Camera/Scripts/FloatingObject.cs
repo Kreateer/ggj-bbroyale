@@ -64,6 +64,8 @@ namespace WaterStylizedShader
                 }
             }
 
+    
+
 
             if (underwater && floatersUnderwater == 0)
             {
@@ -78,19 +80,37 @@ namespace WaterStylizedShader
             {
                 rb.linearDamping = underWaterDrag;
                 rb.angularDamping = underWaterAngularDrag;
-                if (mainCamera.position.y < waterHeight)
-                {
-                  postProcessingVolume.profile = underwaterPostProcessing;
-                } 
+               
             }
             else
             {
                 rb.linearDamping = airWaterDrag;
                 rb.angularDamping = airWaterAngularDrag;
-                if (mainCamera.position.y > waterHeight)
-                {
-                    postProcessingVolume.profile = surfacePostProcessing;
-                }
+                
+            }
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.gameObject.tag == "UnderwaterVolume")
+            {
+                RenderSettings.fog = true;
+            }
+            else
+            {
+                RenderSettings.fog = false;
+            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.gameObject.tag == "UnderwaterVolume")
+            {
+                RenderSettings.fog = false;
+            }
+            else
+            {
+                RenderSettings.fog = true;
             }
         }
     }

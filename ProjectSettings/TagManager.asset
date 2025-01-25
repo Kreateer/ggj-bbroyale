@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 3
   tags:
   - Mine
+  - UnderwaterVolume
+  - SurfaceVolume
   layers:
   - Default
   - TransparentFX
