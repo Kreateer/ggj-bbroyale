@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
         {
             Vector3 origin = new Vector3(Random.Range(-100, 100), 11, Random.Range(50, 150));
             Vector3 goal = player.transform.position;
-            SpawnObject.Spawn(origin, goal, gos[Random.Range(0,2)]);
+            SpawnObject.Spawn(origin, goal, gos[Random.Range(1,2)]);
         }
     }
 }
