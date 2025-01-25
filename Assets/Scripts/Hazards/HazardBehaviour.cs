@@ -86,7 +86,8 @@ public class HazardBehaviour : MonoBehaviour
                         {
                             print(hitangle + " Jump");
                             float speed = Mathf.Abs(aux.GetComponent<Rigidbody>().linearVelocity.x + aux.GetComponent<Rigidbody>().linearVelocity.z);
-                            aux.GetComponent<Rigidbody>().AddForce(aux.transform.up * speed * 50, ForceMode.Impulse);
+                            if(speed > 4)
+                                aux.GetComponent<Rigidbody>().AddForce(aux.transform.up * speed * 50, ForceMode.Impulse);
                         }
                     }
                     break;
@@ -109,7 +110,8 @@ public class HazardBehaviour : MonoBehaviour
     {
         aux.GetComponent<DuckieMovement>().Speed = aux.GetComponent<DuckieMovement>().Speed * force;
         yield return new WaitForSeconds(time);
-        aux.GetComponent<DuckieMovement>().Speed = aux.GetComponent<DuckieMovement>().Speed / force;
+        if(gameObject.tag != "Foam")
+            aux.GetComponent<DuckieMovement>().Speed = aux.GetComponent<DuckieMovement>().Speed / force;
         yield return null;
     }
 

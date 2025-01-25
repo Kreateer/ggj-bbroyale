@@ -95,20 +95,23 @@ public class DuckieMovement : MonoBehaviour
         if (sprintAction.IsPressed() == true && isMovingForward == true)
         {
             //If speed less then maxx, and steer more then min, GO FULL BOOST!
-            if (Speed <= MaxSpeed && Steerpower >= MinSteerpower)
+            if (Speed <= MaxSpeed)
             {
                 Speed = Speed + (Time.deltaTime * AccelerationSpeed);
+            }
+            if (Steerpower >= MinSteerpower)
+            {
                 Steerpower = Steerpower - (Time.deltaTime * SteerAccelerationSpeed);
             }
         }
         else if (anchorAction.IsPressed() == true && sprintAction.IsPressed() == false)
         {
-            if (Speed <= MaxSpeed && Speed >= MinSpeed)
+            if (Speed >= MinSpeed)
             {
                 Speed = Speed - (Time.deltaTime * BreakSpeed);
             }
 
-            if (Steerpower <= 6000f && Steerpower >= MinSteerpower)
+            if (Steerpower <= 6000f)
             {
                 Steerpower = Steerpower + (Time.deltaTime * BreakSpeedSteer);
             }
@@ -116,7 +119,7 @@ public class DuckieMovement : MonoBehaviour
         else
         {
             //utilizing to go back to average speeds
-            if (Speed != BaseSpeed && Steerpower != BaseSteerpower)
+            if (Speed != BaseSpeed)
             {
                 //checking to see if higher or less then base, and then correcting
                 if (Speed >= BaseSpeed)
@@ -127,7 +130,9 @@ public class DuckieMovement : MonoBehaviour
                 {
                     Speed = Speed + (Time.deltaTime * AccelerationSpeed);
                 }
-
+            }
+            if (Steerpower != BaseSteerpower) 
+            { 
                 //checking to see if steerpower is higher or less then base, then correcting.
                 if (Steerpower >= BaseSteerpower)
                 {
@@ -137,12 +142,11 @@ public class DuckieMovement : MonoBehaviour
                 {
                     Steerpower = Steerpower + (Time.deltaTime * SteerAccelerationSpeed);
                 }
-
+                
                 if (Steerpower >= MaxSteerpower)
                 {
                     Steerpower = Steerpower - (Time.deltaTime * BreakSpeedSteer);
                 }
-
             } 
         }
 

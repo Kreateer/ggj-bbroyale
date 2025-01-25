@@ -12,11 +12,11 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.B))
         {
-            Vector3 origin = new Vector3(Random.Range(-100, 100), 11, Random.Range(50, 150));
+            Vector3 origin = new Vector3(Random.Range(-100, 100), 0, Random.Range(50, 150));
             Vector3 goal = player.transform.position;
-            SpawnObject.Spawn(origin, goal, gos[Random.Range(1,2)]);
+            SpawnObject.Spawn(origin, goal, gos[Random.Range(0,1)]);
         }
     }
 }
