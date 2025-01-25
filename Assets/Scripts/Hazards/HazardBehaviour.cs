@@ -107,9 +107,9 @@ public class HazardBehaviour : MonoBehaviour
 
     IEnumerator Boost(float time, float force)
     {
-        aux.GetComponent<DuckieMovement>().Power = aux.GetComponent<DuckieMovement>().Power * force;
+        aux.GetComponent<DuckieMovement>().Speed = aux.GetComponent<DuckieMovement>().Speed * force;
         yield return new WaitForSeconds(time);
-        aux.GetComponent<DuckieMovement>().Power = aux.GetComponent<DuckieMovement>().Power / force;
+        aux.GetComponent<DuckieMovement>().Speed = aux.GetComponent<DuckieMovement>().Speed / force;
         yield return null;
     }
 
