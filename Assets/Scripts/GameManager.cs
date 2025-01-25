@@ -3,6 +3,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public GameObject[] gos;
+    public GameObject player;
 
     void Start()
     {
@@ -13,9 +14,9 @@ public class GameManager : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            Vector3 origin = new Vector3(0, 0, 500);
-            Vector3 goal = new Vector3(1, 1, 1);
-            SpawnObject.Spawn(origin, goal, gos[0]);
+            Vector3 origin = new Vector3(Random.Range(-100, 100), 11, Random.Range(50, 150));
+            Vector3 goal = player.transform.position;
+            SpawnObject.Spawn(origin, goal, gos[Random.Range(0,2)]);
         }
     }
 }
