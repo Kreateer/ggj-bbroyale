@@ -1,17 +1,21 @@
+using System.Collections;
 using UnityEngine;
 
-public class Splash : MonoBehaviour
+public class SplashInner : MonoBehaviour
 {
-
-    public GameObject Player;
+    [SerializeField]
+    private GameObject Player;
 
     private DuckieMovement duckster;
 
     private Vector3 theForceDirection;
     [SerializeField]
-    private float theForceX;
-    [SerializeField]
     private float theForceY;
+
+    [SerializeField]
+    private float ducksterMass;
+
+    private float defaultMass;
 
     private Rigidbody rigidDuck;
 
@@ -20,33 +24,36 @@ public class Splash : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        gameObject.tag = "SplashTrap";
+        gameObject.tag = "SplashTrapInner";
         duckster = Player.GetComponent<DuckieMovement>();
         rigidDuck = Player.GetComponent<Rigidbody>();
-        splashParticle = GetComponent<ParticleSystem>();
+        splashParticle = GetComponentInParent<ParticleSystem>();
         theForceDirection = new Vector3(0.0f, 0.0f, 0.0f);
+        defaultMass = rigidDuck.mass;
 
+    }
+
+    IEnumerator ResetDucklerMass()
+    {
+        Debug.Log("COROUTINE STARTED");
+        yield return new WaitForSeconds(1.5f);
+        Debug.Log("RESETTING MASS");
+        rigidDuck.mass = defaultMass;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        theForceDirection = new Vector3(theForceX, theForceY, 0);
+        theForceDirection = new Vector3(0, theForceY, 0);
         if (other.CompareTag("Player"))
         {
             Debug.Log("SPLASH AAAAAAA");
+            rigidDuck.mass = ducksterMass;
             rigidDuck.AddForce(theForceDirection, ForceMode.Impulse);
+            StartCoroutine(ResetDucklerMass());
         }
     }
 
-    /*private void OnTriggerStay(Collider other)
-    {
-        theForceDirection = new Vector3(theForceX, theForceY, 0);
-        if (other.CompareTag("Player"))
-        {
-            Debug.Log("STILL SPLASHING BOI");
-            rigidDuck.AddForce(theForceDirection, ForceMode.Impulse);
-        }
-    }*/
+    
 
     // Update is called once per frame
     void Update()
