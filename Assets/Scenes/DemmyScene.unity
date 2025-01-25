@@ -7472,6 +7472,9 @@ MonoBehaviour:
   - {fileID: 4749252547070946133, guid: 2b267fa0f559dc84ea8ff28a67b286e0, type: 3}
   - {fileID: 3494830423490184762, guid: cf576bccceb8c424ba04cbf98e2fe2de, type: 3}
   - {fileID: 3494830423490184762, guid: b74cb0fe15d00a64daf7a3a1af6e8e00, type: 3}
+  - {fileID: 3602263080947070416, guid: 4086530c9ee402a49923be8280dfd433, type: 3}
+  - {fileID: 2589438869539695565, guid: 95dc5e0555dd0dd49b8bffc711337331, type: 3}
+  - {fileID: 2950619783686130286, guid: 544a2ca59dcf0a84bbaae37078b27726, type: 3}
   player: {fileID: 1513726673}
 --- !u!4 &1225828838
 Transform:

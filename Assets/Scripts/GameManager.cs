@@ -32,5 +32,11 @@ public class GameManager : MonoBehaviour
             Vector3 goal = player.transform.position;
             SpawnObject.Spawn(origin, goal, gos[Random.Range(1, 3)]);
         }
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            Vector3 origin = new Vector3(Random.Range(-110, 110), -50, Random.Range(-55, 55));
+            Vector3 goal = player.transform.position;
+            SpawnObject.Spawn(origin, goal, gos[3]);
+        }
     }
 }

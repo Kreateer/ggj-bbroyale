@@ -26,6 +26,9 @@ public class Mine : MonoBehaviour
             gameObject.GetComponent<MeshRenderer>().enabled = false;
             gameObject.GetComponent<SphereCollider>().enabled = false;
 
+            Vector3 theForceDirection = (other.transform.position - transform.position).normalized * 1500;
+            other.GetComponent<Rigidbody>().AddForce(theForceDirection, ForceMode.Impulse);
+
             Destroy(gameObject, particleDuration);
         }
         else
