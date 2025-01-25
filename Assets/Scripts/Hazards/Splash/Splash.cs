@@ -5,6 +5,8 @@ public class Splash : MonoBehaviour
 
     public GameObject Player;
 
+    public bool bathring = false;
+
     private DuckieMovement duckster;
 
     private Vector3 theForceDirection;
@@ -31,6 +33,11 @@ public class Splash : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         theForceDirection = new Vector3(theForceX, theForceY, 0);
+        if (bathring)
+        {
+            Vector3 center = new Vector3(0, -50, 0);
+            theForceDirection = (center - transform.position).normalized * 1000;
+        }
         if (other.CompareTag("Player"))
         {
             Debug.Log("SPLASH AAAAAAA");
@@ -51,13 +58,16 @@ public class Splash : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (splashParticle.isPlaying)
+        if(splashParticle != null)
         {
-            gameObject.GetComponent<SphereCollider>().enabled = true;
-        }
-        if (splashParticle.isStopped)
-        {
-            gameObject.GetComponent<SphereCollider>().enabled = false;
+            if (splashParticle.isPlaying)
+            {
+                gameObject.GetComponent<SphereCollider>().enabled = true;
+            }
+            if (splashParticle.isStopped)
+            {
+                gameObject.GetComponent<SphereCollider>().enabled = false;
+            }
         }
     }
 }
