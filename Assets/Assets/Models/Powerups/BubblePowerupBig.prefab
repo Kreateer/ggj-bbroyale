@@ -147,5 +147,6 @@ MonoBehaviour:
   massMultiplier: 2
   scaleSpeed: 2
   playerRef: {fileID: 0}
+  duckFloatPower: 40
   duckCam: {fileID: 0}
   bigDuckCamDistance: 10

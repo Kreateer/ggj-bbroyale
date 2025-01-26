@@ -1,6 +1,7 @@
 using System.Collections;
 using Unity.Cinemachine;
 using UnityEngine;
+using WaterStylizedShader;
 
 public class PowerupBig : MonoBehaviour
 {
@@ -23,6 +24,10 @@ public class PowerupBig : MonoBehaviour
     [SerializeField]
     private GameObject playerRef;
     private DuckieMovement duckster;
+    private FloatingObject floatingObj;
+    [SerializeField]
+    private float duckFloatPower;
+    private float origDuckFloatPower;
     [SerializeField]
     private CinemachineThirdPersonFollow duckCam;
     private float initialCamDistance;
@@ -38,6 +43,9 @@ public class PowerupBig : MonoBehaviour
         duckCam = GameManager.instance.duckcam;
         gameObject.tag = "PowerupBig";
         duckster = playerRef.GetComponent<DuckieMovement>();
+        floatingObj = playerRef.GetComponent<FloatingObject>();
+        origDuckFloatPower = floatingObj.floatingPower;
+        duckFloatPower = floatingObj.floatingPower;
 
         initialY = transform.position.y;
         initialScale = transform.localScale;
@@ -67,6 +75,7 @@ public class PowerupBig : MonoBehaviour
 
             duckster.GetComponent<Rigidbody>().mass = (duckScaleX + duckScaleY + duckScaleZ) * massMultiplier;
             duckster.Speed = duckSpeed;
+            floatingObj.floatingPower = duckFloatPower;
             ScoreManager.instance.AddScore(100);
             duckCam.CameraDistance = bigDuckCamDistance;
             
@@ -108,6 +117,7 @@ public class PowerupBig : MonoBehaviour
 
         duckster.GetComponent<Rigidbody>().mass = initialMass;
         duckster.Speed = initialSpeed;
+        floatingObj.floatingPower = origDuckFloatPower;
 
         yield return new WaitForSeconds(2);
 
