@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
         if(player != null) { 
             timer += Time.deltaTime;
             speedI.fillAmount = (player.GetComponent<DuckieMovement>().Speed - player.GetComponent<DuckieMovement>().BaseSpeed) / player.GetComponent<DuckieMovement>().BaseSpeed;
-            scoreText.text = gameObject.GetComponent<ScoreManager>().GetScore().ToString();
+            scoreText.text = ScoreManager.instance.GetScore().ToString();
             timerText.text = Mathf.Round(timer).ToString();
             Vector3 goal = player.transform.position;
             if(Mathf.Round(timer) % 3 == 0 && !onceB)

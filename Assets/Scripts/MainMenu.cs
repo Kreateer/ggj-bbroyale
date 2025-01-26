@@ -12,7 +12,8 @@ public class MainMenuScript : MonoBehaviour
 
     public void PlayGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        ScoreManager.instance.ResetScore();
+        SceneManager.LoadScene("DemmyScene");
     }
 
     public void QuitGame()
