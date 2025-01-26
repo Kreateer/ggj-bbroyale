@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
             if(Mathf.Round(timer) % 3 == 0 && !onceB)
             {
                 onceB = true;
-                Vector3 origin = new Vector3(Random.Range(-100, 100), -50, Random.Range(-50, 50));
+                Vector3 origin = new Vector3(Random.Range(-100, 100), -48, Random.Range(-50, 50));
                 SpawnObject.Spawn(origin, goal, gos[0], player);
             }
             else if(Mathf.Round(timer) % 3 != 0 && onceB)
