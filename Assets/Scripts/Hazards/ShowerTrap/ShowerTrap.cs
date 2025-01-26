@@ -80,7 +80,7 @@ public class ShowerTrap : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (followPlayer)
+        if (followPlayer && playerRef != null)
         {
             FollowPlayer(followPlayer);
         }

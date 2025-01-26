@@ -12,6 +12,9 @@ TagManager:
   - SplashTrapInner
   - Wave
   - LoseBox
+  - BigBubble
+  - Foam
+  - PowerupBig
   layers:
   - Default
   - TransparentFX

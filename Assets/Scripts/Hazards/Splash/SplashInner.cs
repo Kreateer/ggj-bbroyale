@@ -24,6 +24,7 @@ public class SplashInner : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        Player = GameManager.instance.player;
         gameObject.tag = "SplashTrapInner";
         duckster = Player.GetComponent<DuckieMovement>();
         rigidDuck = Player.GetComponent<Rigidbody>();

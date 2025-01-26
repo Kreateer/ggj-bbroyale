@@ -114,10 +114,13 @@ public class HazardBehaviour : MonoBehaviour
 
     IEnumerator Boost(float time, float force)
     {
-        aux.GetComponent<DuckieMovement>().Speed = aux.GetComponent<DuckieMovement>().Speed * force;
-        yield return new WaitForSeconds(time);
-        if(gameObject.tag != "Foam")
-            aux.GetComponent<DuckieMovement>().Speed = aux.GetComponent<DuckieMovement>().Speed / force;
+        if (aux.GetComponent<DuckieMovement>().Speed < 11)
+        {
+            aux.GetComponent<DuckieMovement>().Speed = aux.GetComponent<DuckieMovement>().Speed * force;
+            yield return new WaitForSeconds(time);
+            if (gameObject.tag != "Foam")
+                aux.GetComponent<DuckieMovement>().Speed = aux.GetComponent<DuckieMovement>().Speed / force;
+        }
         yield return null;
     }
 

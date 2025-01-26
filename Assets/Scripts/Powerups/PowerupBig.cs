@@ -31,6 +31,8 @@ public class PowerupBig : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        playerRef = GameManager.instance.player;
+        duckCam = GameManager.instance.duckcam;
         gameObject.tag = "PowerupBig";
         duckster = playerRef.GetComponent<DuckieMovement>();
 

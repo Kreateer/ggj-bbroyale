@@ -36,12 +36,12 @@ public class Splash : MonoBehaviour
         if (bathring)
         {
             Vector3 center = new Vector3(0, -50, 0);
-            theForceDirection = (center - transform.position).normalized * 1000;
+            theForceDirection = (center - transform.position).normalized * 100;
         }
         if (other.CompareTag("Player"))
         {
             Debug.Log("SPLASH AAAAAAA");
-            rigidDuck.AddForce(theForceDirection, ForceMode.Impulse);
+            rigidDuck.AddForce(theForceDirection * 10, ForceMode.Impulse);
         }
     }
 
