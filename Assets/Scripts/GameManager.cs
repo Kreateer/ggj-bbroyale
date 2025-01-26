@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public CinemachineThirdPersonFollow duckcam;
     public Whirlpool wp;
     public Image speedI;
-    public TextMeshProUGUI timerText;
+    public TextMeshProUGUI timerText, scoreText;
     public static GameManager instance;
 
     void Start()
@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
         if(player != null) { 
             timer += Time.deltaTime;
             speedI.fillAmount = (player.GetComponent<DuckieMovement>().Speed - player.GetComponent<DuckieMovement>().BaseSpeed) / player.GetComponent<DuckieMovement>().BaseSpeed;
+            scoreText.text = gameObject.GetComponent<ScoreManager>().GetScore().ToString();
             timerText.text = Mathf.Round(timer).ToString();
             Vector3 goal = player.transform.position;
             if(Mathf.Round(timer) % 3 == 0 && !onceB)

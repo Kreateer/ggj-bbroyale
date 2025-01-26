@@ -61,7 +61,7 @@ public class PowerupBig : MonoBehaviour
 
             duckster.GetComponent<Rigidbody>().mass = (duckScaleX + duckScaleY + duckScaleZ) * 2;
             duckster.Speed = duckSpeed;
-            
+            ScoreManager.instance.AddScore(100);
             duckCam.CameraDistance = bigDuckCamDistance;
             
             gameObject.GetComponent<MeshRenderer>().enabled = false;

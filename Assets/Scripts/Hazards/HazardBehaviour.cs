@@ -81,15 +81,20 @@ public class HazardBehaviour : MonoBehaviour
                         float hitangle = Mathf.Abs(aux.transform.eulerAngles.y - transform.eulerAngles.y);
                         print(hitangle);
                         if (hitangle < 125 && hitangle > 55)
+                        {
+                            ScoreManager.instance.AddScore(-15);
                             flip = true;
+                        }
                         else if (hitangle < 55)
                         {
                             print(hitangle + " Boost");
                             StartCoroutine(Boost(2f, 2f));
+                            ScoreManager.instance.AddScore(5);
                         }
                         else if (hitangle > 125)
                         {
                             print(hitangle + " Jump");
+                            ScoreManager.instance.AddScore(50);
                             float speed = Mathf.Abs(aux.GetComponent<Rigidbody>().linearVelocity.x + aux.GetComponent<Rigidbody>().linearVelocity.z);
                             if(speed > 4)
                                 aux.GetComponent<Rigidbody>().AddForce(aux.transform.up * speed * 50, ForceMode.Impulse);
@@ -100,11 +105,15 @@ public class HazardBehaviour : MonoBehaviour
                     Vector3 vaux3 = aux.transform.position - transform.position;
                     float dist = Mathf.Abs(vaux3.x) + Mathf.Abs(vaux3.z);
                     if (dist < 6)
+                    {
+                        ScoreManager.instance.AddScore(-10);
                         drag = true;
+                    }
                     else
                         StartCoroutine(Boost(2f, .5f));
                     break;
                 case "BigBubble":
+                    ScoreManager.instance.AddScore(20);
                     StartCoroutine(Boost(6f,4f));
                     Destroy(gameObject);
                     break;

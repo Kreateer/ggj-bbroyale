@@ -57,4 +57,9 @@ public class ScoreManager : MonoBehaviour
     {
         return highScore;
     }
+
+    public int GetScore()
+    {
+        return currentScore;
+    }
 }

@@ -66,6 +66,7 @@ public class ShowerTrap : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             duckster.Speed = 1f;
+            ScoreManager.instance.AddScore(-1);
         }
     }
 

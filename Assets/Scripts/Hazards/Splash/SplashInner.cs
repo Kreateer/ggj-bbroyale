@@ -48,6 +48,7 @@ public class SplashInner : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("SPLASH AAAAAAA");
+            ScoreManager.instance.AddScore(-25);
             rigidDuck.mass = ducksterMass;
             rigidDuck.AddForce(theForceDirection, ForceMode.Impulse);
             StartCoroutine(ResetDucklerMass());
