@@ -9,6 +9,9 @@ public class ShowerTrap : MonoBehaviour
     private float ducksterPower;
 
     [SerializeField]
+    private float setToSpeed;
+
+    [SerializeField]
     private bool followPlayer;
 
     //[SerializeField]
@@ -65,7 +68,7 @@ public class ShowerTrap : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            duckster.Speed = 1f;
+            duckster.Speed = setToSpeed;
             ScoreManager.instance.AddScore(-1);
         }
     }
