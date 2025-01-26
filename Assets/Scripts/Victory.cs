@@ -13,7 +13,7 @@ public class Victory : MonoBehaviour
             scoreText.text = ScoreManager.instance.GetHighScore().ToString();
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
