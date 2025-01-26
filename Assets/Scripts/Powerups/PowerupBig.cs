@@ -16,6 +16,7 @@ public class PowerupBig : MonoBehaviour
     public float duckScaleX;
     public float duckScaleY;
     public float duckScaleZ;
+    public float massMultiplier;
 
     [Range(0, 2)] public float scaleSpeed = 1f;
 
@@ -27,6 +28,8 @@ public class PowerupBig : MonoBehaviour
     private float initialCamDistance;
     [Range(0, 100)]
     public float bigDuckCamDistance;
+
+    private bool isActive = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -42,6 +45,7 @@ public class PowerupBig : MonoBehaviour
         initialSpeed = duckster.Speed;
         initialCamDistance = duckCam.CameraDistance;
 
+
     }
 
     // Update is called once per frame
@@ -53,13 +57,15 @@ public class PowerupBig : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !isActive)
         {
             Debug.Log("Player collided");
+            isActive = true;
+
             Vector3 targetScale = new Vector3(duckScaleX, duckScaleY, duckScaleZ);
             StartCoroutine(LerpOverTime(targetScale, bigDuckCamDistance));
 
-            duckster.GetComponent<Rigidbody>().mass = (duckScaleX + duckScaleY + duckScaleZ) * 2;
+            duckster.GetComponent<Rigidbody>().mass = (duckScaleX + duckScaleY + duckScaleZ) * massMultiplier;
             duckster.Speed = duckSpeed;
             ScoreManager.instance.AddScore(100);
             duckCam.CameraDistance = bigDuckCamDistance;

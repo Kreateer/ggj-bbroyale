@@ -144,7 +144,8 @@ MonoBehaviour:
   duckScaleX: 10
   duckScaleY: 10
   duckScaleZ: 10
+  massMultiplier: 2
   scaleSpeed: 2
   playerRef: {fileID: 0}
   duckCam: {fileID: 0}
-  bigDuckCamDistance: 8
+  bigDuckCamDistance: 10
