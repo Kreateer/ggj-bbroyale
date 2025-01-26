@@ -2067,7 +2067,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ebd1d385d5a97d42872e3e5d9269aba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pull: 3
+  pull: 0.5
   rotate: 15
 --- !u!23 &486612680
 MeshRenderer:
@@ -2092,7 +2092,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: d5fb1088bb6d678459ee0d23e760a052, type: 3}
+  - {fileID: -876546973899608171, guid: 9a1c49adb07c2f241917759c69aca0ce, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2132,7 +2132,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -49.5, z: 0}
-  m_LocalScale: {x: 5.5, y: 5.5, z: 5.5}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}

@@ -29,13 +29,9 @@ public class Whirlpool : MonoBehaviour
     {
         if (HasObjectsNear())
             foreach (Rigidbody r in objsPulled)
-                Pull(r);
+                if(r != null)
+                    Pull(r);
     }
-
-
-
-
-
 
     private void Pull(Rigidbody r)
     {
@@ -56,7 +52,7 @@ public class Whirlpool : MonoBehaviour
         r.AddTorque(torque);
     }
 
-    private void OnDrawGizmos()
+    /*private void OnDrawGizmos()
     {
         Vector3 center = transform.position;
         Gizmos.color = Color.blue;
@@ -82,7 +78,7 @@ public class Whirlpool : MonoBehaviour
                 Gizmos.DrawRay(obj, force);
             }
         }
-    }
+    }*/
 
     private void OnTriggerEnter(Collider o)
     {
@@ -93,8 +89,8 @@ public class Whirlpool : MonoBehaviour
     {
         objsPulled.Remove(o.GetComponent<Rigidbody>());
 
-        if (o.transform.position.y <= drop)
-            Destroy(o.gameObject);
+        /*if (o.transform.position.y <= drop)
+            Destroy(o.gameObject);*/
     }
 
     private bool HasObjectsNear() { return objsPulled.Count != 0; }

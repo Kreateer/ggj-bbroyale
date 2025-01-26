@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public GameObject[] gos;
     public GameObject player;
     public CinemachineThirdPersonFollow duckcam;
+    public Whirlpool wp;
     public static GameManager instance;
 
     void Start()
@@ -60,7 +61,7 @@ public class GameManager : MonoBehaviour
             if(Mathf.Round(timer) % 6 == 0 && !onceS) 
             {
                 onceS = true;
-                Vector3 origin = new Vector3(Random.Range(-5, 5) + player.transform.position.x, -50, Random.Range(-5, 5) + player.transform.position.z);
+                Vector3 origin = new Vector3(Random.Range(-10, 10) + player.transform.position.x, -50, Random.Range(-10, 10) + player.transform.position.z);
                 SpawnObject.Spawn(origin, goal, gos[4], player);
             }
             else if(Mathf.Round(timer) % 6 != 0 && onceS)
@@ -69,12 +70,14 @@ public class GameManager : MonoBehaviour
             }
             if (Mathf.Round(timer) % 30 == 0 && !onceP)
             {
+                wp.pull = 3;
                 onceP = true;
                 Vector3 origin = new Vector3(Random.Range(-100, 100), -48, Random.Range(-50, 50));
                 SpawnObject.Spawn(origin, goal, gos[5], player);
             }
             else if(Mathf.Round(timer) % 30 != 0 && onceP) 
             {
+                wp.pull = .5f;
                 onceP = false;
             }
         }

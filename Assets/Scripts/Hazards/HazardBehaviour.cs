@@ -40,7 +40,7 @@ public class HazardBehaviour : MonoBehaviour
                 aux.transform.eulerAngles = new Vector3(aux.transform.eulerAngles.x, aux.transform.eulerAngles.y, faux);
                 //aux.transform.eulerAngles += new Vector3(0, 0, transform.eulerAngles.z + Time.deltaTime * 100);
                 //print(aux.transform.eulerAngles.z);
-                if(aux.transform.eulerAngles.z > 345 && aux.transform.eulerAngles.z > 355)
+                if(aux.transform.eulerAngles.z > 350)
                 {
                     flip = false;
                     aux.GetComponent<DuckieMovement>().enabled = true;
