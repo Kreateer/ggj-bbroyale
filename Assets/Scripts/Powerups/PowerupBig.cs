@@ -17,6 +17,8 @@ public class PowerupBig : MonoBehaviour
     public float duckScaleY;
     public float duckScaleZ;
 
+    [Range(0, 2)] public float scaleSpeed = 1f;
+
     [SerializeField]
     private GameObject playerRef;
     private DuckieMovement duckster;
@@ -29,12 +31,11 @@ public class PowerupBig : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        initialY = transform.position.y;
-        initialScale = transform.localScale;
-        
-        
         gameObject.tag = "PowerupBig";
         duckster = playerRef.GetComponent<DuckieMovement>();
+
+        initialY = transform.position.y;
+        initialScale = transform.localScale;
         initialMass = duckster.GetComponent<Rigidbody>().mass;
         initialSpeed = duckster.Speed;
         initialCamDistance = duckCam.CameraDistance;
@@ -53,23 +54,55 @@ public class PowerupBig : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("Player collided");
-            playerRef.transform.localScale = new Vector3(duckScaleX, duckScaleY, duckScaleZ);
+            Vector3 targetScale = new Vector3(duckScaleX, duckScaleY, duckScaleZ);
+            StartCoroutine(LerpOverTime(targetScale, bigDuckCamDistance));
+
             duckster.GetComponent<Rigidbody>().mass = (duckScaleX + duckScaleY + duckScaleZ) * 2;
             duckster.Speed = duckSpeed;
+            
             duckCam.CameraDistance = bigDuckCamDistance;
+            
             gameObject.GetComponent<MeshRenderer>().enabled = false;
             gameObject.GetComponent<SphereCollider>().enabled = false;
+            
             StartCoroutine(ResetDuckSize());
         }
     }
 
-    IEnumerator ResetDuckSize()
+    private IEnumerator LerpOverTime(Vector3 targetScale, float targetCamDistance)
+    {
+        float elapsedTime = 0f;
+        Vector3 startScale = playerRef.transform.localScale;
+        float startCamDistance = duckCam.CameraDistance;
+
+        while (elapsedTime < scaleSpeed)
+        {
+            // Lerp the scale of the duck
+            playerRef.transform.localScale = Vector3.Lerp(startScale, targetScale, elapsedTime / scaleSpeed);
+
+            // Lerp the camera distance
+            duckCam.CameraDistance = Mathf.Lerp(startCamDistance, targetCamDistance, elapsedTime / scaleSpeed);
+
+            elapsedTime += Time.deltaTime;
+            yield return null; // Wait for the next frame
+        }
+
+        // Ensure final values are exactly at the targets
+        playerRef.transform.localScale = targetScale;
+        duckCam.CameraDistance = targetCamDistance;
+    }
+
+    private IEnumerator ResetDuckSize()
     {
         yield return new WaitForSeconds(resetDelay);
-        playerRef.transform.localScale = initialScale;
+
+        StartCoroutine(LerpOverTime(initialScale, initialCamDistance));
+
         duckster.GetComponent<Rigidbody>().mass = initialMass;
         duckster.Speed = initialSpeed;
-        duckCam.CameraDistance = initialCamDistance;
+
+        yield return new WaitForSeconds(2);
+
         Destroy(gameObject);
     }
 }
