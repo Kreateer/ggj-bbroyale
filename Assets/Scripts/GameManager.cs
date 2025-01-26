@@ -1,5 +1,7 @@
+using TMPro;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.UI;
 using static UnityEngine.UI.Image;
 
 public class GameManager : MonoBehaviour
@@ -8,6 +10,8 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public CinemachineThirdPersonFollow duckcam;
     public Whirlpool wp;
+    public Image speedI;
+    public TextMeshProUGUI timerText;
     public static GameManager instance;
 
     void Start()
@@ -21,6 +25,8 @@ public class GameManager : MonoBehaviour
     {
         if(player != null) { 
             timer += Time.deltaTime;
+            speedI.fillAmount = (player.GetComponent<DuckieMovement>().Speed - player.GetComponent<DuckieMovement>().BaseSpeed) / player.GetComponent<DuckieMovement>().BaseSpeed;
+            timerText.text = Mathf.Round(timer).ToString();
             Vector3 goal = player.transform.position;
             if(Mathf.Round(timer) % 3 == 0 && !onceB)
             {
