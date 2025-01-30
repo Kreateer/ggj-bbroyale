@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -12,6 +13,9 @@ public class ShowerTrap : MonoBehaviour
     private float setToSpeed;
 
     [SerializeField]
+    private float slowSpeedPower;
+
+    [SerializeField]
     private bool followPlayer;
 
     //[SerializeField]
@@ -21,6 +25,15 @@ public class ShowerTrap : MonoBehaviour
 
     [SerializeField]
     private float followSpeed;
+
+    [SerializeField]
+    private float followSpeedInside;
+
+    [SerializeField]
+    private float followSpeedOutside;
+
+    [SerializeField]
+    private float delayTimeExit;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -68,8 +81,15 @@ public class ShowerTrap : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            duckster.Speed = setToSpeed;
+            if (duckster.Speed >= setToSpeed)
+            {
+                duckster.Speed = duckster.Speed - (Time.deltaTime * slowSpeedPower);
+            }
+
+            //duckster.Speed = setToSpeed;
             ScoreManager.instance.AddScore(-1);
+
+            followSpeed = followSpeedInside;
         }
     }
 
@@ -78,6 +98,8 @@ public class ShowerTrap : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             duckster.Speed = ducksterPower;
+
+            StartCoroutine(DelayAction(delayTimeExit));
         }
     }
 
@@ -88,5 +110,11 @@ public class ShowerTrap : MonoBehaviour
         {
             FollowPlayer(followPlayer);
         }
+    }
+
+    IEnumerator DelayAction(float delayTimeExit)
+    {
+        yield return new WaitForSeconds(delayTimeExit);
+        followSpeed = followSpeedOutside;
     }
 }

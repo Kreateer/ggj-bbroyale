@@ -16,6 +16,7 @@ public class DuckieMovement : MonoBehaviour
     public float MaxSteerpower;
     public float MinSteerpower;
     public float BaseSteerpower;
+    public float MaxAccelSteerpower;
 
     public float Speed;
     public float MaxSpeed;
@@ -115,7 +116,7 @@ public class DuckieMovement : MonoBehaviour
                 Speed = Speed - (Time.deltaTime * BreakSpeed);
             }
 
-            if (Steerpower <= 6000f)
+            if (Steerpower <= MaxAccelSteerpower)
             {
                 Steerpower = Steerpower + (Time.deltaTime * BreakSpeedSteer);
             }

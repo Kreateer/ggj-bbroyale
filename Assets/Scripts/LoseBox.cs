@@ -5,6 +5,10 @@ public class LoseBox : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        SceneManager.LoadScene("Lose");
+        if (other.gameObject.tag == "Player")
+        {
+            SceneManager.LoadScene("Lose");
+        }
+            
     }
 }
