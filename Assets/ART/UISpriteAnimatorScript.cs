@@ -28,8 +28,7 @@ public class UISpriteAnimation : MonoBehaviour
             if (index >= sprites.Count)
                 index = 0;
             else
-                image.sprite = sprites[index];
-            Debug.Log(index);
+                image.sprite = sprites[index];            
         }
     }
    
