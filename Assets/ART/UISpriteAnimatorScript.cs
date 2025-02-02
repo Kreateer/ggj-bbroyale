@@ -9,7 +9,7 @@ public class UISpriteAnimation : MonoBehaviour
     
     public Image image;
     public List<Sprite> sprites;
-    public float animSpeed = 1;
+    public float animSpeed = 0.3f;
     private int index;
     
 
@@ -29,6 +29,7 @@ public class UISpriteAnimation : MonoBehaviour
                 index = 0;
             else
                 image.sprite = sprites[index];
+            Debug.Log(index);
         }
     }
    
