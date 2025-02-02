@@ -6506,30 +6506,6 @@ PrefabInstance:
       propertyPath: playerRef
       value: 
       objectReference: {fileID: 1513726673}
-    - target: {fileID: 1407927575783586530, guid: 544a2ca59dcf0a84bbaae37078b27726, type: 3}
-      propertyPath: setToSpeed
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1407927575783586530, guid: 544a2ca59dcf0a84bbaae37078b27726, type: 3}
-      propertyPath: followSpeed
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1407927575783586530, guid: 544a2ca59dcf0a84bbaae37078b27726, type: 3}
-      propertyPath: delayTimeExit
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1407927575783586530, guid: 544a2ca59dcf0a84bbaae37078b27726, type: 3}
-      propertyPath: slowSpeedPower
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1407927575783586530, guid: 544a2ca59dcf0a84bbaae37078b27726, type: 3}
-      propertyPath: followSpeedInside
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1407927575783586530, guid: 544a2ca59dcf0a84bbaae37078b27726, type: 3}
-      propertyPath: followSpeedOutside
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 2950619783686130286, guid: 544a2ca59dcf0a84bbaae37078b27726, type: 3}
       propertyPath: m_Name
       value: ShowerHeadTrap
