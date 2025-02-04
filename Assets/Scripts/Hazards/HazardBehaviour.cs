@@ -14,8 +14,13 @@ public class HazardBehaviour : MonoBehaviour
     GameObject aux = null;
     private void Start()
     {
-        if(goal != null)
-            direction = (goal - transform.position).normalized;
+        if(goal != null) 
+        {
+            Vector3 auxgoal = goal;
+            if(goal.y > -50)
+                auxgoal = new Vector3(goal.x, -50, goal.z);
+            direction = (auxgoal - transform.position).normalized;
+        }
     }
 
     float faux = 0, timer = 0, deathTime = 0;

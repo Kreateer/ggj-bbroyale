@@ -16,6 +16,7 @@ public class SpawnObject : MonoBehaviour
         { 
             aux.GetComponent<HazardBehaviour>().goal = goal;
             aux.transform.LookAt(goal);
+            aux.transform.eulerAngles = new Vector3(0, aux.transform.eulerAngles.y, aux.transform.eulerAngles.z);
             if (aux.tag == "Wave")
                 aux.transform.eulerAngles = new Vector3(aux.transform.eulerAngles.x, aux.transform.eulerAngles.y, 90);
         }
