@@ -68,19 +68,17 @@ public class PowerupBig : MonoBehaviour
         if (other.CompareTag("Player") && !isActive)
         {
             Debug.Log("Player collided");
-            isActive = true;
+            Debug.Log("Is Active is " + isActive);
 
-            Vector3 targetScale = new Vector3(duckScaleX, duckScaleY, duckScaleZ);
-            StartCoroutine(LerpOverTime(targetScale, bigDuckCamDistance));
-
-            duckster.GetComponent<Rigidbody>().mass = (duckScaleX + duckScaleY + duckScaleZ) * massMultiplier;
-            duckster.Speed = duckSpeed;
-            floatingObj.floatingPower = duckFloatPower;
-            ScoreManager.instance.AddScore(100);
-            duckCam.CameraDistance = bigDuckCamDistance;
-            
             gameObject.GetComponent<MeshRenderer>().enabled = false;
             gameObject.GetComponent<SphereCollider>().enabled = false;
+
+            isActive = true;
+            ScoreManager.instance.AddScore(100);            
+
+            Vector3 targetScale = new Vector3(duckScaleX, duckScaleY, duckScaleZ);
+
+            StartCoroutine(LerpOverTime(targetScale, bigDuckCamDistance));
             
             StartCoroutine(ResetDuckSize());
         }
@@ -107,19 +105,31 @@ public class PowerupBig : MonoBehaviour
         // Ensure final values are exactly at the targets
         playerRef.transform.localScale = targetScale;
         duckCam.CameraDistance = targetCamDistance;
+
+        duckster.GetComponent<Rigidbody>().mass = (duckScaleX + duckScaleY + duckScaleZ) * massMultiplier;
+        duckster.Speed = duckSpeed;
+        floatingObj.floatingPower = duckFloatPower;
+        duckCam.CameraDistance = bigDuckCamDistance;
+
+        Debug.Log("Lerp Coroutine complete");
     }
 
     private IEnumerator ResetDuckSize()
     {
         yield return new WaitForSeconds(resetDelay);
 
+        Debug.Log("Duck size reset initialized");
+
         StartCoroutine(LerpOverTime(initialScale, initialCamDistance));
 
         duckster.GetComponent<Rigidbody>().mass = initialMass;
         duckster.Speed = initialSpeed;
         floatingObj.floatingPower = origDuckFloatPower;
-
+        isActive = false;
+        
         yield return new WaitForSeconds(2);
+        
+        Debug.Log("Waited and self-destructed");
 
         Destroy(gameObject);
     }

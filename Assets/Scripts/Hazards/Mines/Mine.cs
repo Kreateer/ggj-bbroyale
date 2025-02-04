@@ -31,10 +31,6 @@ public class Mine : MonoBehaviour
 
             Destroy(gameObject, particleDuration);
         }
-        else
-        {
-            Debug.Log("Not Player");
-        }
     }
 
     // Update is called once per frame
