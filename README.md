@@ -10,8 +10,6 @@ Both this repository and the [Itch.io page](https://kreateer.itch.io/bubble-bath
 
 ## Screenshots
 
-More available on 
-
 ![](https://img.itch.zone/aW1hZ2UvMzI2ODA1NC8xOTUzNTg0My5wbmc=/347x500/6SJQHX.png)
 ![](https://img.itch.zone/aW1hZ2UvMzI2ODA1NC8xOTYyMTM1My5wbmc=/347x500/twPB9R.png)
 
